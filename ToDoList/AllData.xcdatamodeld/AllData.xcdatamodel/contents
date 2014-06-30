@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Groups" representedClassName="Groups" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="groupName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromGroupsToNotes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Notes" inverseName="fromNotesToGroups" inverseEntity="Notes" syncable="YES"/>
+    </entity>
+    <entity name="Notes" representedClassName="Notes" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="describtion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noteName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromNotesToGroups" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="fromGroupsToNotes" inverseEntity="Groups" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Groups" positionX="144" positionY="18" width="128" height="88"/>
+        <element name="Notes" positionX="-83" positionY="18" width="128" height="135"/>
+    </elements>
+</model>
