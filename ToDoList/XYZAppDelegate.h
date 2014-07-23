@@ -15,9 +15,6 @@
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) UIWindow *window;
 
-//- (NSMutableArray*)getAllGroups;
-//- (NSMutableArray*)getAllNotes;
-//- (NSString *)applicationDocumentsDirectory;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
