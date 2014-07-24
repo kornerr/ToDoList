@@ -7,6 +7,7 @@
 //
 
 #import "XYZAppDelegate.h"
+#import "XYZToDoListViewController.h"
 
 @implementation XYZAppDelegate
 
@@ -14,13 +15,46 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
+                                                        message:notification.alertBody
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    // Set icon badge number to zero
+    application.applicationIconBadgeNumber = 0;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    /*   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-     // Override point for customization after application launch.
-     self.window.backgroundColor = [UIColor whiteColor];
-     [self.window makeKeyAndVisible];*/
+    // Override point for customization after application launch.
+    
+    // Handle launching from a notification
+    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (locationNotification) {
+        // Set icon badge number to zero
+        application.applicationIconBadgeNumber = 0;
+    }
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    XYZToDoListViewController *t = [[XYZToDoListViewController alloc] init];
+    [t autorelease];
+    XYZAddToDoItemViewController *child = [[XYZAddToDoItemViewController alloc] init];
+    [child autorelease];
+    t.add = child;
+    UINavigationController *nt = [[UINavigationController alloc] initWithRootViewController:t];
+    self.window.rootViewController = nt;
+    self.window.backgroundColor = [UIColor blueColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XYZToDoItem.h"
+
 
 @interface XYZAddToDoItemViewController : UIViewController
 @property (strong) NSManagedObject *note;
