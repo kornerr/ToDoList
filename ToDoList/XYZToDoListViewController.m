@@ -68,7 +68,7 @@
     NSManagedObject *note = [self.notes objectAtIndex:indexPath.row];
     [cell.textLabel setText:[NSString stringWithFormat:@"%@", [note valueForKey:@"noteName"]]];
     return cell;
-}
+} 
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
