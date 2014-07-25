@@ -84,7 +84,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        
     }
     return self;
 }

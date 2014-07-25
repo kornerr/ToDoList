@@ -1,4 +1,5 @@
 
+#import "XYZToDoListViewController.h"
 #import "XYZAddToDoItemViewController.h"
 #import "XYZAppDelegate.h"
 #import "Notes.h"
@@ -35,7 +36,6 @@
         }
     }
 }
-
 
 
 - (IBAction)CloseForm:(id)sender
@@ -105,12 +105,69 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                             style:UIBarButtonItemStyleBordered
+                                                            target:self
+                                                            action:@selector(goHome)];
+    [item autorelease];
+    self.navigationItem.rightBarButtonItem = item;
     self.navigationItem.title = @"To-Do List";
     XYZAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     if (self.note) {
         [self.textField setText:[self.note valueForKey:@"noteName"]];
         [self.textField2 setText:[self.note valueForKey:@"describtion"]];
+    }
+}
+
+
+- (void)goHome
+{
+    if (self.SwitchOne.on) {
+        [self.textField resignFirstResponder];
+        NSDate *pickerDate = [self.DatePKR date];
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = pickerDate;
+        localNotification.alertBody = self.textField.text;
+        localNotification.alertAction = @"Show me the item";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    } else {
+    }
+    if (self.textField.text.length > 0) {
+        if (self.note) {
+            [self.note setValue:self.textField.text forKey:@"noteName"];
+            [self.note setValue:self.textField2.text forKey:@"describtion"];
+            NSManagedObjectID *moID = [note objectID];
+            NSLog(@"Updating Done %@", moID);
+            // Переход обратно с внесением изменений в БД
+            NSLog (@"Welcome home!");
+            XYZToDoListViewController *home = [[XYZToDoListViewController alloc]init];
+            [self presentViewController:home animated:YES completion:nil];
+            // Переход
+        } else {
+            Notes * newEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Notes"
+                                                             inManagedObjectContext:self.managedObjectContext];
+            newEntry.noteName = self.textField.text;
+            newEntry.describtion = self.textField2.text;
+            if (self.SwitchOne.on) {
+                newEntry.date = self.DatePKR.date;;
+            } else {
+                newEntry.date = 0;;
+            }
+            // Переход обратно с внесением изменений в БД
+            NSLog (@"Welcome home!");
+            XYZToDoListViewController *home = [[XYZToDoListViewController alloc]init];
+            [self presentViewController:home animated:YES completion:nil];
+            // Переход
+            NSError *error;
+            if (![self.managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+            NSLog(@"Date: %@", newEntry.date);
+        }
+        [self.view endEditing:YES];
     }
 }
 
