@@ -1,10 +1,3 @@
-//
-//  XYZTableViewCell.m
-//  ToDoList
-//
-//  Created by Кирилл on 23.07.14.
-//
-//
 
 #import "XYZTableViewCell.h"
 
@@ -12,7 +5,7 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code 
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

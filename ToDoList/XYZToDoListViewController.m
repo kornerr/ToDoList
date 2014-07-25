@@ -1,16 +1,8 @@
-//
-//  XYZToDoListViewController.m
-//  ToDoList
-//
-//  Created by Kirill Skulkin on 15.03.14.
-//
-//
 
 #import "XYZToDoListViewController.h"
 #import "XYZAddToDoItemViewController.h"
 #import "XYZAppDelegate.h"
 #import "Notes.h"
-
 
 @interface XYZToDoListViewController ()
 
@@ -20,11 +12,13 @@
 
 @implementation XYZToDoListViewController
 
+
 - (void)dealloc
 {
     [_add release];
     [super dealloc];
 }
+
 
 - (NSManagedObjectContext *)managedObjectContext
 {
@@ -36,14 +30,18 @@
     return context;
 }
 
-- (void)loadInitialData {
+
+- (void)loadInitialData
+{
     
 }
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
+
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -52,14 +50,16 @@
         [context deleteObject:[self.notes objectAtIndex:indexPath.row]];
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         NSError *error = nil;
-            if (![context save:&error]) {
-                NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
-                return;
-                }
+        if (![context save:&error]) {
+            NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
+            return;
+        }
+        
         [self.notes removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -68,7 +68,8 @@
     NSManagedObject *note = [self.notes objectAtIndex:indexPath.row];
     [cell.textLabel setText:[NSString stringWithFormat:@"%@", [note valueForKey:@"noteName"]]];
     return cell;
-} 
+}
+
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
@@ -78,18 +79,21 @@
     [self.tableView reloadData];
 }
 
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
+        
     }
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Add new"
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Add"
                                                              style:UIBarButtonItemStyleBordered
                                                             target:self
                                                             action:@selector(onNextPage)];
@@ -104,27 +108,32 @@
     [self.tableView reloadData];
 }
 
+
 - (void)onNextPage
 {
-    NSLog(@"on next page");
+    NSLog (@"on next page");
     [self.navigationController pushViewController:self.add
                                          animated:YES];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.notes count];
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -135,12 +144,12 @@
     }
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*[tableView deselectRowAtIndexPath:indexPath animated:NO];
-    XYZToDoItem *tappedItem = [self.toDoItems objectAtIndex:indexPath.row];
-    tappedItem.completed = !tappedItem.completed;
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];*/
+
 }
 
+
 @end
+
