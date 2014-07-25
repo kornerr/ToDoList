@@ -23,12 +23,18 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="HideKeyBoard:" destination="-1" eventType="editingDidEndOnExit" id="llp-hg-Yui"/>
+                    </connections>
                 </textField>
                 <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="More information?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WX9-aU-Q6S">
                     <rect key="frame" x="20" y="119" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="HideKeyBoard:" destination="-1" eventType="editingDidEndOnExit" id="w2w-jp-euh"/>
+                    </connections>
                 </textField>
                 <switch appearanceType="aqua" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Jar-ix-tAI">
                     <rect key="frame" x="211" y="162" width="51" height="31"/>
@@ -36,6 +42,7 @@
                     <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <action selector="GetVisible:" destination="-2" eventType="valueChanged" id="hMg-9m-zY3"/>
+                        <action selector="HideKeyBoard:" destination="-1" eventType="valueChanged" id="bFh-7B-1R6"/>
                     </connections>
                 </switch>
                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remind?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIz-2b-Ftq">

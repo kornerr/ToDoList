@@ -21,23 +21,6 @@
 @synthesize note;
 
 
-
-- (IBAction)HideKeyBoard:(id)sender {
-    [self.view endEditing:YES];
-}
-
-
-- (IBAction)GetVisible:(id)sender {
-    {
-        if (self.SwitchOne.on) {
-            self.DatePKR.hidden = NO;
-        } else {
-            self.DatePKR.hidden = YES;
-        }
-    }
-}
-
-
 - (IBAction)CloseForm:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -93,15 +76,6 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -141,11 +115,10 @@
             [self.note setValue:self.textField2.text forKey:@"describtion"];
             NSManagedObjectID *moID = [note objectID];
             NSLog(@"Updating Done %@", moID);
-            // Переход обратно с внесением изменений в БД
             NSLog (@"Welcome home!");
-            XYZToDoListViewController *home = [[XYZToDoListViewController alloc]init];
-            [self presentViewController:home animated:YES completion:nil];
-            // Переход
+            [[self navigationController] popToRootViewControllerAnimated:YES];
+            _textField.text = nil;
+            
         } else {
             Notes * newEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Notes"
                                                              inManagedObjectContext:self.managedObjectContext];
@@ -156,11 +129,8 @@
             } else {
                 newEntry.date = 0;;
             }
-            // Переход обратно с внесением изменений в БД
-            NSLog (@"Welcome home!");
-            XYZToDoListViewController *home = [[XYZToDoListViewController alloc]init];
-            [self presentViewController:home animated:YES completion:nil];
-            // Переход
+            [[self navigationController] popToRootViewControllerAnimated:YES];
+            _textField.text = nil;
             NSError *error;
             if (![self.managedObjectContext save:&error]) {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -172,9 +142,55 @@
 }
 
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+    }
+    return self;
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([_textField isFirstResponder] && [touch view] != _textField) {
+        [_textField resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
+
+- (IBAction)HideKeyBoard:(id)sender {
+    [self.view endEditing:YES];
+}
+
+
+- (IBAction)GetVisible:(id)sender {
+    {
+        if (self.SwitchOne.on) {
+            self.DatePKR.hidden = NO;
+        } else {
+            self.DatePKR.hidden = YES;
+        }
+    }
+}
+
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(textField==self.textField)
+   {
+       [self.textField resignFirstResponder];
+       return NO;
+    }
+    return YES;
 }
 
 

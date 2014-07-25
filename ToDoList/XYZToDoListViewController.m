@@ -109,9 +109,16 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog (@"viewDidAppear?");
+    [self.tableView reloadData];
+}
+
+
 - (void)onNextPage
 {
-    NSLog (@"on next page");
+    NSLog (@"Add new page");
     [self.navigationController pushViewController:self.add
                                          animated:YES];
 }
