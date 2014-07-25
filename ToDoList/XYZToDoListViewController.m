@@ -93,6 +93,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // self.navigationController.navigationBar.barTintColor = [UIColor blueColor];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Add"
                                                              style:UIBarButtonItemStyleBordered
                                                             target:self
