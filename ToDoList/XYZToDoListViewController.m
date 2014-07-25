@@ -113,6 +113,10 @@
 {
     NSLog (@"viewDidAppear?");
     [self.tableView reloadData];
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
+    self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    [self.tableView reloadData];
 }
 
 
