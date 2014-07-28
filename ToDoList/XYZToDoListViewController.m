@@ -109,10 +109,9 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     NSLog (@"viewDidAppear?");
-    [self.tableView reloadData];
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
@@ -123,8 +122,7 @@
 - (void)onNextPage
 {
     NSLog (@"Add new page");
-    [self.navigationController pushViewController:self.add
-                                         animated:YES];
+    [self.navigationController pushViewController:self.add animated:YES];
 }
 
 
@@ -158,7 +156,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    XYZAddToDoItemViewController *destViewController;
+    destViewController.note = selectedDevice;
+    [self.navigationController pushViewController:self.add animated:YES];
 }
 
 
