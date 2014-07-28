@@ -157,8 +157,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-    XYZAddToDoItemViewController *destViewController;
-    destViewController.note = selectedDevice;
+    _add.note = selectedDevice;
     [self.navigationController pushViewController:self.add animated:YES];
 }
 

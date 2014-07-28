@@ -76,8 +76,7 @@
 }
 
 
-- (void)viewDidLoad
-{
+- (void) viewWillAppear:(BOOL)animated {
     [super viewDidLoad];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                              style:UIBarButtonItemStyleBordered
