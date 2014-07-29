@@ -10,7 +10,7 @@
                 <outlet property="SwitchOne" destination="Jar-ix-tAI" id="OyU-Dv-pEb"/>
                 <outlet property="textField" destination="6vz-oM-2gX" id="HNO-lW-3YA"/>
                 <outlet property="textField2" destination="WX9-aU-Q6S" id="Ao2-lO-Ri9"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="9iH-da-5Ce"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
