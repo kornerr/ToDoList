@@ -47,9 +47,14 @@
 /* Begin PBXFileReference section */
 		ED16469618EC27F1005419A6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		ED1CD50D18E95C10003560CC /* AllData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AllData.xcdatamodel; sourceTree = "<group>"; };
-		ED25ECBE1985F06A00835A28 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/XYZTableViewCell.xib; sourceTree = "<group>"; };
-		ED537CBB19877A8200E1C089 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/XYZToDoListViewController.xib; sourceTree = "<group>"; };
-		ED537CC819877BF700E1C089 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/XYZAddToDoItemViewController.xib; sourceTree = "<group>"; };
+		ED5065D31988A0DF002A4C50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED5065D41988A0DF002A4C50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ED5065E51988B4BA002A4C50 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/XYZToDoListViewController.xib; sourceTree = "<group>"; };
+		ED5065E61988B4BA002A4C50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/XYZToDoListViewController.xib; sourceTree = "<group>"; };
+		ED5065E71988B4DF002A4C50 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/XYZTableViewCell.xib; sourceTree = "<group>"; };
+		ED5065E81988B4DF002A4C50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/XYZTableViewCell.xib; sourceTree = "<group>"; };
+		ED5065E91988B4ED002A4C50 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/XYZAddToDoItemViewController.xib; sourceTree = "<group>"; };
+		ED5065EA1988B4ED002A4C50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/XYZAddToDoItemViewController.xib; sourceTree = "<group>"; };
 		ED8D1DD218D44F6D004420DD /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED8D1DD518D44F6D004420DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ED8D1DD718D44F6D004420DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -248,6 +253,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
+				ru,
 			);
 			mainGroup = ED8D1DC918D44F6D004420DD;
 			productRefGroup = ED8D1DD318D44F6D004420DD /* Products */;
@@ -324,7 +331,8 @@
 		ED25ECBF1985F06A00835A28 /* XYZTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ED25ECBE1985F06A00835A28 /* en */,
+				ED5065E71988B4DF002A4C50 /* en */,
+				ED5065E81988B4DF002A4C50 /* ru */,
 			);
 			name = XYZTableViewCell.xib;
 			sourceTree = "<group>";
@@ -332,7 +340,8 @@
 		ED537CBA19877A8200E1C089 /* XYZToDoListViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ED537CBB19877A8200E1C089 /* en */,
+				ED5065E51988B4BA002A4C50 /* en */,
+				ED5065E61988B4BA002A4C50 /* ru */,
 			);
 			name = XYZToDoListViewController.xib;
 			sourceTree = "<group>";
@@ -340,7 +349,8 @@
 		ED537CC919877BF700E1C089 /* XYZAddToDoItemViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ED537CC819877BF700E1C089 /* en */,
+				ED5065E91988B4ED002A4C50 /* en */,
+				ED5065EA1988B4ED002A4C50 /* ru */,
 			);
 			name = XYZAddToDoItemViewController.xib;
 			sourceTree = "<group>";
@@ -349,6 +359,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ED8D1DDF18D44F6D004420DD /* en */,
+				ED5065D31988A0DF002A4C50 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -357,6 +368,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ED8D1DF818D44F6E004420DD /* en */,
+				ED5065D41988A0DF002A4C50 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

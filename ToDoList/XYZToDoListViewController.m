@@ -54,9 +54,9 @@
             NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
             return;
         }
-        
         [self.notes removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
     }
 }
 
@@ -93,10 +93,9 @@
 {
     [super viewDidLoad];
     // self.navigationController.navigationBar.barTintColor = [UIColor blueColor];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Add"
-                                                             style:UIBarButtonItemStyleBordered
-                                                            target:self
-                                                            action:@selector(onNextPage)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                          target:self
+                                                                          action:@selector(onNextPage)];
     [item autorelease];
     self.navigationItem.rightBarButtonItem = item;
     self.navigationItem.title = @"To-Do List";
@@ -121,7 +120,6 @@
 
 - (void)onNextPage
 {
-    NSLog (@"Add new page");
     [self.navigationController pushViewController:self.add animated:YES];
 }
 
@@ -156,9 +154,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-    _add.note = selectedDevice;
-    [self.navigationController pushViewController:self.add animated:YES];
+    
+    //NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    //_add.note = selectedDevice;
+    //[self.navigationController pushViewController:self.add animated:YES];
 }
 
 
