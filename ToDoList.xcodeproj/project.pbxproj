@@ -11,7 +11,6 @@
 		ED1CD50E18E95C10003560CC /* AllData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED1CD50C18E95C10003560CC /* AllData.xcdatamodeld */; };
 		ED537CBF19877BAB00E1C089 /* XYZToDoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED537CBA19877A8200E1C089 /* XYZToDoListViewController.xib */; };
 		ED537CC019877BAF00E1C089 /* XYZTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED25ECBF1985F06A00835A28 /* XYZTableViewCell.xib */; };
-		ED537CC319877BEE00E1C089 /* XYZToDoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED537CBA19877A8200E1C089 /* XYZToDoListViewController.xib */; };
 		ED537CC419877BF100E1C089 /* XYZTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED25ECBF1985F06A00835A28 /* XYZTableViewCell.xib */; };
 		ED537CC619877BF700E1C089 /* XYZAddToDoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED537CC919877BF700E1C089 /* XYZAddToDoItemViewController.xib */; };
 		ED537CC719877BF700E1C089 /* XYZAddToDoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED537CC919877BF700E1C089 /* XYZAddToDoItemViewController.xib */; };
@@ -285,7 +284,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED537CC319877BEE00E1C089 /* XYZToDoListViewController.xib in Resources */,
 				ED537CC419877BF100E1C089 /* XYZTableViewCell.xib in Resources */,
 				ED537CC719877BF700E1C089 /* XYZAddToDoItemViewController.xib in Resources */,
 				ED8D1DF918D44F6E004420DD /* InfoPlist.strings in Resources */,

@@ -48,7 +48,7 @@
     if (self.note) {
         [self.textField setText:[self.note valueForKey:@"noteName"]];
         [self.textField2 setText:[self.note valueForKey:@"describtion"]];
-    }
+    } 
 }
 
 

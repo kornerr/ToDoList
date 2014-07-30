@@ -2,7 +2,7 @@
 #import "XYZTableViewCell.h"
 
 @implementation XYZTableViewCell
-
+ 
 - (void)awakeFromNib
 {
     // Initialization code

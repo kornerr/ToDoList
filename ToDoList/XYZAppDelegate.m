@@ -31,7 +31,7 @@
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
-}
+} 
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
