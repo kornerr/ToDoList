@@ -1,8 +1,10 @@
 
+
 #import "XYZToDoListViewController.h"
 #import "XYZAddToDoItemViewController.h"
 #import "XYZAppDelegate.h"
 #import "Notes.h"
+
 
 @interface XYZAddToDoItemViewController ()
 @property (nonatomic) IBOutlet UITextField *textField;
@@ -14,9 +16,12 @@
 @property (nonatomic) IBOutlet UIButton *Hidebutton;
 @property (nonatomic) IBOutlet UIButton *changeGroupButton;
 
+
 @end
 
+
 @implementation XYZAddToDoItemViewController
+
 
 @synthesize note;
 
@@ -40,7 +45,7 @@
                                                                           action:@selector(goHome)];
     [item autorelease];
     self.navigationItem.rightBarButtonItem = item;
-    self.navigationItem.title = @"To-Do List";
+    self.navigationItem.title = @"";
     XYZAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     _textField.text = nil;
@@ -48,7 +53,7 @@
     if (self.note) {
         [self.textField setText:[self.note valueForKey:@"noteName"]];
         [self.textField2 setText:[self.note valueForKey:@"describtion"]];
-    } 
+    }
 }
 
 
@@ -152,4 +157,3 @@
 
 
 @end
-

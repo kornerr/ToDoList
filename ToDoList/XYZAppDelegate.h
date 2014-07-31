@@ -1,12 +1,7 @@
-//
-//  XYZAppDelegate.h
-//  ToDoList
-//
-//  Created by Kirill Skulkin on 15.03.14.
-//
-//
+
 
 #import <UIKit/UIKit.h>
+
 
 @interface XYZAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -17,5 +12,6 @@
 
 - (void)saveContext; 
 - (NSURL *)applicationDocumentsDirectory;
+
 
 @end

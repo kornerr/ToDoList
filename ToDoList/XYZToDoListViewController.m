@@ -1,14 +1,17 @@
 
+
 #import "XYZToDoListViewController.h"
 #import "XYZAddToDoItemViewController.h"
 #import "XYZAppDelegate.h"
 #import "Notes.h"
+
 
 @interface XYZToDoListViewController ()
 
 @property (strong)NSMutableArray* notes;
 
 @end
+
 
 @implementation XYZToDoListViewController
 
@@ -48,7 +51,6 @@
     NSManagedObjectContext *context = [self managedObjectContext];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [context deleteObject:[self.notes objectAtIndex:indexPath.row]];
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         NSError *error = nil;
         if (![context save:&error]) {
             NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
@@ -56,6 +58,7 @@
         }
         [self.notes removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         [self.tableView reloadData];
     }
 }
@@ -92,7 +95,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // self.navigationController.navigationBar.barTintColor = [UIColor blueColor];
+    self.navigationController.navigationBar.barTintColor = [UIColor
+                                                            colorWithRed:59/255.0f
+                                                            green:111/255.0f
+                                                            blue:255/255.0f
+                                                            alpha:1.0f];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                           target:self
                                                                           action:@selector(onNextPage)];
@@ -110,7 +118,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog (@"viewDidAppear?");
+    NSLog (@"viewWillAppear?");
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
@@ -154,10 +162,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-    //_add.note = selectedDevice;
-    //[self.navigationController pushViewController:self.add animated:YES];
+    NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    _add.note = selectedDevice;	
+    [self.navigationController pushViewController:self.add animated:YES];
 }
 
 

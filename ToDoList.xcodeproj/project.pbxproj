@@ -14,6 +14,7 @@
 		ED537CC419877BF100E1C089 /* XYZTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED25ECBF1985F06A00835A28 /* XYZTableViewCell.xib */; };
 		ED537CC619877BF700E1C089 /* XYZAddToDoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED537CC919877BF700E1C089 /* XYZAddToDoItemViewController.xib */; };
 		ED537CC719877BF700E1C089 /* XYZAddToDoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED537CC919877BF700E1C089 /* XYZAddToDoItemViewController.xib */; };
+		ED78B3EE1989F18600149E58 /* XYZToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE270B3198213300057E98C /* XYZToDoListViewController.m */; };
 		ED8D1DD618D44F6D004420DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8D1DD518D44F6D004420DD /* Foundation.framework */; };
 		ED8D1DD818D44F6D004420DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8D1DD718D44F6D004420DD /* CoreGraphics.framework */; };
 		ED8D1DDA18D44F6D004420DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED8D1DD918D44F6D004420DD /* UIKit.framework */; };
@@ -27,7 +28,6 @@
 		ED8D1DF918D44F6E004420DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED8D1DF718D44F6E004420DD /* InfoPlist.strings */; };
 		ED8D1DFB18D44F6E004420DD /* ToDoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8D1DFA18D44F6E004420DD /* ToDoListTests.m */; };
 		EDD042CD18F9757D006C37D2 /* keyboardOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EDD042CC18F9757D006C37D2 /* keyboardOff.png */; };
-		EDE270B5198213300057E98C /* XYZToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE270B3198213300057E98C /* XYZToDoListViewController.m */; };
 		EDE270BA198214AA0057E98C /* XYZTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE270B8198214AA0057E98C /* XYZTableViewCell.m */; };
 		EDE270C41982152F0057E98C /* XYZAddToDoItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE270C21982152F0057E98C /* XYZAddToDoItemViewController.m */; };
 		EDF9DEC6197CCDA4000904EB /* Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF9DEC5197CCDA4000904EB /* Notes.m */; };
@@ -297,8 +297,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDE270B5198213300057E98C /* XYZToDoListViewController.m in Sources */,
 				ED8D1DE618D44F6D004420DD /* XYZAppDelegate.m in Sources */,
+				ED78B3EE1989F18600149E58 /* XYZToDoListViewController.m in Sources */,
 				ED8D1DE218D44F6D004420DD /* main.m in Sources */,
 				EDF9DEC6197CCDA4000904EB /* Notes.m in Sources */,
 				EDE270C41982152F0057E98C /* XYZAddToDoItemViewController.m in Sources */,
