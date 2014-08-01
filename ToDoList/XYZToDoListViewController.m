@@ -60,6 +60,7 @@
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         [self.tableView reloadData];
+        
     }
 }
 
