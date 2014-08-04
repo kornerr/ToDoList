@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XYZAddToDoItemViewController">
             <connections>
                 <outlet property="DatePKR" destination="0hN-Z6-uqh" id="Ke0-4P-ccb"/>
+                <outlet property="Lbl2" destination="KIz-2b-Ftq" id="Wez-Xe-ktB"/>
                 <outlet property="SwitchOne" destination="Jar-ix-tAI" id="OyU-Dv-pEb"/>
                 <outlet property="textField" destination="6vz-oM-2gX" id="HNO-lW-3YA"/>
                 <outlet property="textField2" destination="WX9-aU-Q6S" id="Ao2-lO-Ri9"/>

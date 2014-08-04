@@ -6,9 +6,9 @@
 
 @interface XYZToDoListViewController : UITableViewController
 
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 
 @property (retain, nonatomic) XYZAddToDoItemViewController *add;
+@property (nonatomic) BOOL edit;
 
 
 @end

@@ -8,7 +8,9 @@
 
 @interface XYZToDoListViewController ()
 
-@property (strong)NSMutableArray* notes;
+
+@property (strong) NSMutableArray *notes;
+
 
 @end
 
@@ -31,12 +33,6 @@
         context = [delegate managedObjectContext];
     }
     return context;
-}
-
-
-- (void)loadInitialData
-{
-    
 }
 
 
@@ -74,15 +70,6 @@
 }
 
 
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue
-{
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
-    self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    [self.tableView reloadData];
-}
-
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -112,6 +99,7 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    _edit = NO;
     [self.tableView reloadData];
 }
 
@@ -119,6 +107,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     //NSLog (@"viewWillAppear?");
+    _edit = NO;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
@@ -162,9 +151,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-    //_add.note = selectedDevice;
-    //[self.navigationController pushViewController:self.add animated:YES];
+    NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    _add.note = selectedDevice;
+    _edit = YES;
+    [self.add setEdit:self];
+    [self.navigationController pushViewController:self.add animated:YES];
 }
 
 

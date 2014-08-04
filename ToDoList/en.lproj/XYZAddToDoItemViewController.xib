@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XYZAddToDoItemViewController">
             <connections>
                 <outlet property="DatePKR" destination="0hN-Z6-uqh" id="Ke0-4P-ccb"/>
+                <outlet property="Lbl" destination="KIz-2b-Ftq" id="f2R-Sg-wBm"/>
                 <outlet property="SwitchOne" destination="Jar-ix-tAI" id="OyU-Dv-pEb"/>
                 <outlet property="textField" destination="6vz-oM-2gX" id="HNO-lW-3YA"/>
                 <outlet property="textField2" destination="WX9-aU-Q6S" id="Ao2-lO-Ri9"/>

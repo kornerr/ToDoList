@@ -7,14 +7,15 @@
 
 
 @interface XYZAddToDoItemViewController ()
+
+
 @property (nonatomic) IBOutlet UITextField *textField;
-@property (nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic) IBOutlet UISwitch *SwitchOne;
 @property (nonatomic) IBOutlet UIDatePicker *DatePKR;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) IBOutlet UITextField *textField2;
-@property (nonatomic) IBOutlet UIButton *Hidebutton;
-@property (nonatomic) IBOutlet UIButton *changeGroupButton;
+@property (retain, nonatomic) IBOutlet UILabel *Lbl;
+@property (retain, nonatomic) IBOutlet UILabel *Lbl2;
 
 
 @end
@@ -32,12 +33,6 @@
 }
 
 
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue
-{
-    
-}
-
-
 - (void) viewWillAppear:(BOOL)animated {
     [super viewDidLoad];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -50,15 +45,25 @@
     self.managedObjectContext = appDelegate.managedObjectContext;
     _textField.text = nil;
     _textField2.text = nil;
-    if (self.note) {
+    if (_edit == YES) {
         [self.textField setText:[self.note valueForKey:@"noteName"]];
         [self.textField2 setText:[self.note valueForKey:@"describtion"]];
-    }
-    [self.SwitchOne setOn:NO];
-    if (self.SwitchOne.on) {
-        self.DatePKR.hidden = NO;
+        //[self.DatePKR setDate:[self.note valueForKey:@"describtion"]];
+        [self.Lbl setHidden:YES];
+        [self.SwitchOne setHidden:YES];
+        [self.DatePKR setHidden:YES];
+        [self.Lbl2 setHidden:YES];
     } else {
-        self.DatePKR.hidden = YES;
+        [self.Lbl setHidden:NO];
+        [self.SwitchOne setHidden:NO];
+        [self.DatePKR setHidden:NO];
+        [self.Lbl2 setHidden:NO];
+        [self.SwitchOne setOn:NO];
+        if (self.SwitchOne.on) {
+            self.DatePKR.hidden = NO;
+        } else {
+            self.DatePKR.hidden = YES;
+        }
     }
 }
 
@@ -66,7 +71,7 @@
 - (void)goHome
 {
     if (self.textField.text.length > 0) {
-        if (self.note) {
+        if (_edit == YES) {
             [self.note setValue:self.textField.text forKey:@"noteName"];
             [self.note setValue:self.textField2.text forKey:@"describtion"];
             NSManagedObjectID *moID = [note objectID];
@@ -74,29 +79,32 @@
             NSLog (@"Welcome home!");
             [[self navigationController] popToRootViewControllerAnimated:YES];
             _textField.text = nil;
-            
+            _textField2.text = nil;
+            _edit = NO;
         } else {
             Notes * newEntry = [NSEntityDescription insertNewObjectForEntityForName:@"Notes"
                                                              inManagedObjectContext:self.managedObjectContext];
             newEntry.noteName = self.textField.text;
             newEntry.describtion = self.textField2.text;
             // Switch checking and add new remind
-            if (self.SwitchOne.on) {
-                newEntry.date = self.DatePKR.date;;
-                [self.textField resignFirstResponder];
-                NSDate *pickerDate = [self.DatePKR date];
-                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-                localNotification.fireDate = pickerDate;
-                localNotification.alertBody = self.textField.text;
-                localNotification.alertAction = @"Show me the item";
-                localNotification.timeZone = [NSTimeZone defaultTimeZone];
-                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-            } else {
+                if (self.SwitchOne.on) {
+                    newEntry.date = self.DatePKR.date;;
+                    [self.textField resignFirstResponder];
+                    NSDate *pickerDate = [self.DatePKR date];
+                    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+                    localNotification.fireDate = pickerDate;
+                    localNotification.alertBody = self.textField.text;
+                    localNotification.alertAction = @"Show me the item";
+                    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+                    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                } else {
                 newEntry.date = 0;  
-            }
-            [[self navigationController] popToRootViewControllerAnimated:YES];
+                }
             _textField.text = nil;
+            _textField2.text = nil;
+            _edit = NO;
+            [[self navigationController] popToRootViewControllerAnimated:YES];
             NSError *error;
             if (![self.managedObjectContext save:&error]) {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -160,4 +168,9 @@
 }
 
 
+- (void)dealloc {
+    [_Lbl release];
+    [_Lbl2 release];
+    [super dealloc];
+}
 @end
