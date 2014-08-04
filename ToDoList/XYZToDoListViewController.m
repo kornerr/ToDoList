@@ -60,7 +60,6 @@
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         [self.tableView reloadData];
-        
     }
 }
 
@@ -119,7 +118,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog (@"viewWillAppear?");
+    //NSLog (@"viewWillAppear?");
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
@@ -163,9 +162,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-    _add.note = selectedDevice;	
-    [self.navigationController pushViewController:self.add animated:YES];
+    //NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+    //_add.note = selectedDevice;
+    //[self.navigationController pushViewController:self.add animated:YES];
 }
 
 

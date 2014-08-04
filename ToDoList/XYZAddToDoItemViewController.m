@@ -45,7 +45,7 @@
                                                                           action:@selector(goHome)];
     [item autorelease];
     self.navigationItem.rightBarButtonItem = item;
-    self.navigationItem.title = @"";
+    //self.navigationItem.title = @"???";
     XYZAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     _textField.text = nil;
@@ -54,23 +54,17 @@
         [self.textField setText:[self.note valueForKey:@"noteName"]];
         [self.textField2 setText:[self.note valueForKey:@"describtion"]];
     }
+    [self.SwitchOne setOn:NO];
+    if (self.SwitchOne.on) {
+        self.DatePKR.hidden = NO;
+    } else {
+        self.DatePKR.hidden = YES;
+    }
 }
 
 
 - (void)goHome
 {
-    if (self.SwitchOne.on) {
-        [self.textField resignFirstResponder];
-        NSDate *pickerDate = [self.DatePKR date];
-        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-        localNotification.fireDate = pickerDate;
-        localNotification.alertBody = self.textField.text;
-        localNotification.alertAction = @"Show me the item";
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    } else {
-    }
     if (self.textField.text.length > 0) {
         if (self.note) {
             [self.note setValue:self.textField.text forKey:@"noteName"];
@@ -86,10 +80,20 @@
                                                              inManagedObjectContext:self.managedObjectContext];
             newEntry.noteName = self.textField.text;
             newEntry.describtion = self.textField2.text;
+            // Switch checking and add new remind
             if (self.SwitchOne.on) {
                 newEntry.date = self.DatePKR.date;;
+                [self.textField resignFirstResponder];
+                NSDate *pickerDate = [self.DatePKR date];
+                UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+                localNotification.fireDate = pickerDate;
+                localNotification.alertBody = self.textField.text;
+                localNotification.alertAction = @"Show me the item";
+                localNotification.timeZone = [NSTimeZone defaultTimeZone];
+                localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
             } else {
-                newEntry.date = 0;;
+                newEntry.date = 0;  
             }
             [[self navigationController] popToRootViewControllerAnimated:YES];
             _textField.text = nil;
