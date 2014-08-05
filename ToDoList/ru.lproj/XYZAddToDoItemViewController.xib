@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="14A314h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XYZAddToDoItemViewController">
             <connections>
                 <outlet property="DatePKR" destination="0hN-Z6-uqh" id="Ke0-4P-ccb"/>
+                <outlet property="DatePKR2" destination="0hN-Z6-uqh" id="3sf-S4-ssF"/>
                 <outlet property="Lbl2" destination="KIz-2b-Ftq" id="Wez-Xe-ktB"/>
                 <outlet property="SwitchOne" destination="Jar-ix-tAI" id="OyU-Dv-pEb"/>
                 <outlet property="textField" destination="6vz-oM-2gX" id="HNO-lW-3YA"/>
@@ -46,7 +47,7 @@
                         <action selector="HideKeyBoard:" destination="-1" eventType="valueChanged" id="bFh-7B-1R6"/>
                     </connections>
                 </switch>
-                <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="0hN-Z6-uqh">
+                <datePicker hidden="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="0hN-Z6-uqh">
                     <rect key="frame" x="0.0" y="203" width="320" height="162"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <date key="date" timeIntervalSinceReferenceDate="427956243.39712799">

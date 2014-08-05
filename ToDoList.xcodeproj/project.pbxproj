@@ -41,6 +41,20 @@
 			remoteGlobalIDString = ED8D1DD118D44F6D004420DD;
 			remoteInfo = ToDoList;
 		};
+		ED1E2B0A198F3AA100AF87D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED8D1DCA18D44F6D004420DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED8D1DD118D44F6D004420DD;
+			remoteInfo = ToDoList;
+		};
+		ED1E2B0C198F3AAD00AF87D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED8D1DCA18D44F6D004420DD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED8D1DD118D44F6D004420DD;
+			remoteInfo = ToDoList;
+		};
 		ED8D1DF218D44F6E004420DD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ED8D1DCA18D44F6D004420DD /* Project object */;
@@ -231,6 +245,8 @@
 			dependencies = (
 				ED8D1DF318D44F6E004420DD /* PBXTargetDependency */,
 				ED1E2B09198F3AA100AF87D5 /* PBXTargetDependency */,
+				ED1E2B0B198F3AA100AF87D5 /* PBXTargetDependency */,
+				ED1E2B0D198F3AAD00AF87D5 /* PBXTargetDependency */,
 			);
 			name = ToDoListTests;
 			productName = ToDoListTests;
@@ -338,6 +354,16 @@
 			isa = PBXTargetDependency;
 			target = ED8D1DD118D44F6D004420DD /* ToDoList */;
 			targetProxy = ED1E2B08198F3AA100AF87D5 /* PBXContainerItemProxy */;
+		};
+		ED1E2B0B198F3AA100AF87D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED8D1DD118D44F6D004420DD /* ToDoList */;
+			targetProxy = ED1E2B0A198F3AA100AF87D5 /* PBXContainerItemProxy */;
+		};
+		ED1E2B0D198F3AAD00AF87D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED8D1DD118D44F6D004420DD /* ToDoList */;
+			targetProxy = ED1E2B0C198F3AAD00AF87D5 /* PBXContainerItemProxy */;
 		};
 		ED8D1DF318D44F6E004420DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

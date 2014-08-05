@@ -12,6 +12,7 @@
 @property (nonatomic) IBOutlet UITextField *textField;
 @property (nonatomic) IBOutlet UISwitch *SwitchOne;
 @property (nonatomic) IBOutlet UIDatePicker *DatePKR;
+@property (retain, nonatomic) IBOutlet UIDatePicker *DatePKR2;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) IBOutlet UITextField *textField2;
 @property (retain, nonatomic) IBOutlet UILabel *Lbl;
@@ -34,12 +35,14 @@
 
 
 - (void) viewWillAppear:(BOOL)animated {
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
+    
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                           target:self
                                                                           action:@selector(goHome)];
     [item autorelease];
     self.navigationItem.rightBarButtonItem = item;
+    
     //self.navigationItem.title = @"???";
     XYZAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
@@ -48,16 +51,22 @@
     if (_edit == YES) {
         [self.textField setText:[self.note valueForKey:@"noteName"]];
         [self.textField2 setText:[self.note valueForKey:@"describtion"]];
-        //[self.DatePKR setDate:[self.note valueForKey:@"describtion"]];
-        [self.Lbl setHidden:YES];
-        [self.SwitchOne setHidden:YES];
-        [self.DatePKR setHidden:YES];
-        [self.Lbl2 setHidden:YES];
+        [self.navigationItem setHidesBackButton:YES];
+        [self.Lbl setEnabled:NO];
+        [self.SwitchOne setEnabled:NO];
+        [self.Lbl2 setEnabled:NO];
+        [self.SwitchOne setOn:NO];
+        if (self.SwitchOne.on) {
+            self.DatePKR.hidden = NO;
+        } else {
+            self.DatePKR.hidden = YES;
+        }
     } else {
-        [self.Lbl setHidden:NO];
-        [self.SwitchOne setHidden:NO];
-        [self.DatePKR setHidden:NO];
-        [self.Lbl2 setHidden:NO];
+        [self.navigationItem setHidesBackButton:NO];
+        [self.Lbl setEnabled:YES];
+        [self.SwitchOne setEnabled:YES];
+        [self.DatePKR setEnabled:YES];
+        [self.Lbl2 setEnabled:YES];
         [self.SwitchOne setOn:NO];
         if (self.SwitchOne.on) {
             self.DatePKR.hidden = NO;
@@ -74,6 +83,7 @@
         if (_edit == YES) {
             [self.note setValue:self.textField.text forKey:@"noteName"];
             [self.note setValue:self.textField2.text forKey:@"describtion"];
+            [self.note setValue:self.DatePKR.date forKey:@"date"];
             NSManagedObjectID *moID = [note objectID];
             NSLog(@"Updating Done %@", moID);
             NSLog (@"Welcome home!");
@@ -171,6 +181,7 @@
 - (void)dealloc {
     [_Lbl release];
     [_Lbl2 release];
+    [_DatePKR2 release];
     [super dealloc];
 }
 @end

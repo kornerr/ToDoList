@@ -106,17 +106,19 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //NSLog (@"viewWillAppear?");
-    _edit = NO;
+    NSLog (@"viewWillAppear?");
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     [self.tableView reloadData];
+    _edit = NO;
 }
 
 
 - (void)onNextPage
 {
+    _edit = NO;
+    
     [self.navigationController pushViewController:self.add animated:YES];
 }
 
@@ -136,16 +138,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.notes count];
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"UpdateNote"]) {
-        NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
-        XYZAddToDoItemViewController *destViewController = segue.destinationViewController;
-        destViewController.note = selectedDevice;
-    }
 }
 
 
