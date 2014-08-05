@@ -42,7 +42,6 @@
                                                                           action:@selector(goHome)];
     [item autorelease];
     self.navigationItem.rightBarButtonItem = item;
-    
     //self.navigationItem.title = @"???";
     XYZAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
