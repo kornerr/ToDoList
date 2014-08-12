@@ -21,10 +21,14 @@
                                                        delegate:self cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+	// REVIEW Нет release. Почему его нет? Почему он должен быть? (Как
+	// REVIEW влияет название сообщения (метода) на дальнейшее применение
+	// REVIEW или НЕприменение release?)
     }
     
     // Request to reload table view data
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+	// REVIEW Почему не просто [tableView reloadData]?
     
     // Set icon badge number to zero
     application.applicationIconBadgeNumber = 0;
@@ -44,6 +48,7 @@
     [child autorelease];
     t.add = child;
     UINavigationController *nt = [[UINavigationController alloc] initWithRootViewController:t];
+	// REVIEW Тоже вопрос про release.
     self.window.rootViewController = nt;
     self.window.backgroundColor = [UIColor blueColor];
     [self.window makeKeyAndVisible];

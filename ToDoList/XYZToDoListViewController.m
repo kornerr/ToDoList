@@ -10,7 +10,8 @@
 
 
 @property (strong) NSMutableArray *notes;
-
+// REVIEW Почему не retain?
+// REVIEW Почему не nonatomic?
 
 @end
 
@@ -50,6 +51,7 @@
         NSError *error = nil;
         if (![context save:&error]) {
             NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
+	// REVIEW Использовать UIAlertView для сообщения об ошибке.
             return;
         }
         [self.notes removeObjectAtIndex:indexPath.row];
@@ -63,9 +65,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"NoteCellID";
+// REVIEW Зачем придумывать константу длиннее сокращаемой строки
+// REVIEW да ещё и используемую один раз?
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSManagedObject *note = [self.notes objectAtIndex:indexPath.row];
     [cell.textLabel setText:[NSString stringWithFormat:@"%@", [note valueForKey:@"noteName"]]];
+// REVIEW В требования была всё же своя ячейка, а не стандартная. Нужно сделать свою.
     return cell;
 }
 
@@ -92,14 +97,19 @@
                                                                           target:self
                                                                           action:@selector(onNextPage)];
     [item autorelease];
+// REVIEW Почему нужен autorelease?
     self.navigationItem.rightBarButtonItem = item;
     self.navigationItem.title = @"To-Do List";
+// REVIEW Почему не локализовано?
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"NoteCellID"];
+// REVIEW В каком другом сообщении (методе) можно зарегистрировать ячейку
+// REVIEW ранее вызова viewDidLoad?
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
     _edit = NO;
+// REVIEW Использовать self.edit. В чём отличия от _edit? Когда нужно использовать self.edit, а когда _edit? Почему?
     [self.tableView reloadData];
 }
 
@@ -110,6 +120,7 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Notes"];
     self.notes = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+// REVIEW Зачем снова получать self.notes, если уже получили во viewDidLoad?
     [self.tableView reloadData];
     _edit = NO;
 }
@@ -132,6 +143,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+// REVIEW Почему 1?
 }
 
 
@@ -144,7 +156,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *selectedDevice = [self.notes objectAtIndex:[[self.tableView indexPathForSelectedRow] row]];
+// REVIEW Почему selectedDevice? Надо переименовать.
+// REVIEW Почему такое странное получение row?
+// REVIEW Разве нельзя просто исползовать indexPath.row? 
     _add.note = selectedDevice;
+// REVIEW Почему нельзя сразу присвоить add.note,
+// REVIEW зачем промеужточный selectedDevice?`
     _edit = YES;
     [self.add setEdit:self];
     [self.navigationController pushViewController:self.add animated:YES];

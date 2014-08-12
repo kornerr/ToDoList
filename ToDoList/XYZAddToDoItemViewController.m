@@ -17,6 +17,8 @@
 @property (nonatomic) IBOutlet UITextField *textField2;
 @property (retain, nonatomic) IBOutlet UILabel *Lbl;
 @property (retain, nonatomic) IBOutlet UILabel *Lbl2;
+// REVIEW Почему у часть есть retain, у части нет?
+// REVIEW Надо назвать аутлеты по-человечески - по их предназначению
 
 
 @end
@@ -26,15 +28,19 @@
 
 
 @synthesize note;
+// REVIEW Зачем это?
 
 
 - (IBAction)CloseForm:(id)sender
+// REVIEW Почему не camelCase?
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
+// REVIEW Почему пробел после возвращаемого типа?
+// REVIEW Почему открывающая скобка не на новой строке?
     [super viewWillAppear:animated];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -42,10 +48,16 @@
                                                                           action:@selector(goHome)];
     [item autorelease];
     self.navigationItem.rightBarButtonItem = item;
+// REVIEW Зачем создавать rightBarButtonItem при каждом отображении?
+// REVIEW Почему не сделать это раз?
+// REVIEW Где это можно сделать кроме viewWillAppear и viewDidLoad?
     //self.navigationItem.title = @"???";
     XYZAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+// REVIEW Непотребство. Поменять на прямую установку managedObjectContext
+// REVIEW при создании контроллера. Всё должно быть явно.
     self.managedObjectContext = appDelegate.managedObjectContext;
     _textField.text = nil;
+// REVIEW Что это?
     _textField2.text = nil;
     if (_edit == YES) {
         [self.textField setText:[self.note valueForKey:@"noteName"]];
@@ -73,6 +85,7 @@
             self.DatePKR.hidden = YES;
         }
     }
+// REVIEW Как можно переписать if-else так, чтобы кода стало в 2 раза меньше?
 }
 
 
@@ -87,6 +100,7 @@
             NSLog(@"Updating Done %@", moID);
             NSLog (@"Welcome home!");
             [[self navigationController] popToRootViewControllerAnimated:YES];
+	// REVIEW Почему pop до root view controller?
             _textField.text = nil;
             _textField2.text = nil;
             _edit = NO;
@@ -101,6 +115,7 @@
                     [self.textField resignFirstResponder];
                     NSDate *pickerDate = [self.DatePKR date];
                     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+// REVIEW Должен ли быть release/autorelease? Почему?
                     localNotification.fireDate = pickerDate;
                     localNotification.alertBody = self.textField.text;
                     localNotification.alertAction = @"Show me the item";
@@ -109,14 +124,17 @@
                     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
                 } else {
                 newEntry.date = 0;  
+// REVIEW Почему неверный отступ?
                 }
             _textField.text = nil;
             _textField2.text = nil;
             _edit = NO;
+// REVIEW Зачем? Ведь и так NO.
             [[self navigationController] popToRootViewControllerAnimated:YES];
             NSError *error;
             if (![self.managedObjectContext save:&error]) {
                 NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+// REVIEW Сообщать с помощью UIAlertView.
             }
             NSLog(@"Date: %@", newEntry.date);
         }
@@ -147,17 +165,23 @@
         [_textField resignFirstResponder];
     }
     [super touchesBegan:touches withEvent:event];
+// REVIEW Упростить. Можно использовать Tap. Также лучше заменить resignFirstResponder на [UIView endEditing]. Почему?
 }
 
 
 - (IBAction)HideKeyBoard:(id)sender {
     [self.view endEditing:YES];
+// REVIEW Почему здесь не resignFirstResponder, а более корректный endEditing?
 }
 
 
 - (IBAction)GetVisible:(id)sender {
+// REVIEW Почему не camelCase? Почему открывающая скобка не на новой строке?
     {
+// REVIEW Зачем { { ?
         if (self.SwitchOne.on) {
+// REVIEW Зачем скобки, если всего лишь одна строка следует?
+// REVIEW Как можно переписать это всё в одну строку?
             self.DatePKR.hidden = NO;
         } else {
             self.DatePKR.hidden = YES;
@@ -182,5 +206,6 @@
     [_Lbl2 release];
     [_DatePKR2 release];
     [super dealloc];
+// REVIEW Почему не все аутлеты?
 }
 @end
